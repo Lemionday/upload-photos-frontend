@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let data: { images: string[] };
+	interface Image {
+		link: string;
+		created: Date;
+	}
+	export let data: { images: Image[] };
 
 	$: console.log(data);
 </script>
@@ -7,9 +11,11 @@
 <div>
 	{#each data.images as image}
 		<img
-			src={`https://storage.googleapis.com/photos-upload-website/${image}`}
+			src={`https://storage.googleapis.com/photos-upload-website/${image.link}`}
 			alt=""
-			width="100%"
+			width="50%"
 		/>
+		<span>{image.link}</span>
+		<span>{image.created}</span>
 	{/each}
 </div>
